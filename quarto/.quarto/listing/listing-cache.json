@@ -1,0 +1,11 @@
+{
+  "listingMap": {
+    "posts/photos/index.qmd": [
+      "Agdes2025/*.jpg",
+      "Agdes2025/*.JPG"
+    ],
+    "index.qmd": [
+      "posts"
+    ]
+  }
+}
