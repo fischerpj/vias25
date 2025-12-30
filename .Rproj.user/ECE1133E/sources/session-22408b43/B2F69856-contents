@@ -3,10 +3,8 @@ title: "Photos Vias 2025"
 author: "pjf"
 date: "2025-12-27"
 categories: [news]
-listing:
-  contents: 
-    - "agde25/*.jpg"
-    - "agde25/*.JPG"
 ---
 
 
+:::list-images
+:::

@@ -1,0 +1,46 @@
+-- list-images.lua
+-- Generates a table of JPG thumbnails from photos/agde25
+
+local function is_jpg(filename)
+  local ext = filename:match("^.+(%..+)$")
+  if not ext then return false end
+  ext = ext:lower()
+  return ext == ".jpg"
+end
+
+function Div(el)
+  -- Only process :::list-images blocks
+  if not el.classes:includes("list-images") then
+    return nil
+  end
+
+  -- Fixed folder and width (your requirement)
+  local folder = "Agdes25"
+  local width  = "120"
+
+  -- List files using Pandoc's built-in API
+  local files = pandoc.system.list_directory(folder)
+
+  -- Filter JPG files
+  local rows = {}
+  for _, file in ipairs(files) do
+    if is_jpg(file) then
+      local path = pandoc.path.join({folder, file})
+      local thumb = string.format("![](%s){width=%s}", path, width)
+      table.insert(rows, {file = file, thumb = thumb})
+    end
+  end
+
+  -- Sort alphabetically
+  table.sort(rows, function(a, b) return a.file < b.file end)
+
+  -- Build Markdown table
+  local md = {}
+  table.insert(md, "| File | Thumbnail |")
+  table.insert(md, "|------|-----------|")
+  for _, r in ipairs(rows) do
+    table.insert(md, string.format("| %s | %s |", r.file, r.thumb))
+  end
+
+  return pandoc.RawBlock("markdown", table.concat(md, "\n"))
+end
