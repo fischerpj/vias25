@@ -1,0 +1,13 @@
+---
+title: "Photos Vias 2025"
+author: "pjf"
+date: "2025-12-27"
+categories: [news]
+listing:
+  contents: 
+    - "Agdes2025/*.jpg"
+    - "Agdes2025/*.JPG"
+  type: table
+---
+
+
